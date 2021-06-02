@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import { Component } from 'react'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      likes: 0,
+    }
 
+    this.addCounter = this.addCounter.bind(this);
+  }
+
+  addCounter = () => {
+    let likesTotal = this.state.likes + 1
+    this.setState({
+      likes: likesTotal
+    })
+  }
+
+  render() {
+    return (
+      <div className="button-container">
+        <button className="like-button" onClick={this.addCounter}>{this.state.likes}{this.state.likes === 1 ? ' Like' : ' Likes'}
+        </button>
+      </div>
+    )
+  }
+}
 export default App;
